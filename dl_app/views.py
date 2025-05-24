@@ -14,8 +14,9 @@ def stream_video(request):
     # إعداد yt-dlp للبث المباشر إلى stdout
     command = [
         "yt-dlp",
-        "-f", "best[ext=mp4]/best",
-        "-o", "-",  # output to stdout
+        "-f", "worstvideo[ext=mp4]+worstaudio[ext=m4a]/worst",
+        "-o", "-",
+        "--merge-output-format", "mp4",
         video_url
     ]
 
