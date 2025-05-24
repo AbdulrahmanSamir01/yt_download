@@ -1,19 +1,12 @@
-<!-- templates/download.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>YouTube Video Downloader</title>
-</head>
-<body>
-    <h2>Enter YouTube Video URL</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" name="video_url" placeholder="Video URL" required />
-        <button type="submit">Download</button>
-    </form>
+<!-- index.html -->
+<form method="get" action="{% url 'stream_video' %}">
+    <input type="text" name="url" placeholder="أدخل رابط يوتيوب" required>
+    <button type="submit">تشغيل الفيديو</button>
+</form>
 
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
-</body>
-</html>
+{% if request.GET.url %}
+    <video controls width="640" height="360">
+        <source src="{% url 'stream_video' %}?url={{ request.GET.url }}" type="video/mp4">
+        متصفحك لا يدعم تشغيل الفيديو.
+    </video>
+{% endif %}
