@@ -31,7 +31,7 @@ def stream_video(request):
     def stream_generator():
         try:
             while True:
-                chunk = process.stdout.read(1024 * 1024)  # 1 ميجا
+                chunk = process.stdout.read(256 * 1024)  # 256 كيلوبايت
                 if not chunk:
                     break
                 yield chunk
